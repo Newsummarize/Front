@@ -1,12 +1,24 @@
-# React + Vite
+# NewSummarize
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Label
+* feat: 새로운 기능 추가(개발)
+* fix: 버그 수정
+* design: 사용자 ui 디자인 변경
+* refactor: 코드 리펙토링
+* comment: 주석을 추가하거나 변경한 경우
+* docs: 문서 수저
+* test: 테스트코드 추가, 변경, 리펙토링 등을 한 경우 (프로덕션 코드 변경 X)
+* setting: 패키지 설치, 개발 설정
+* rename: 파일 또는 폴더명을 수정하거나 옮기는 경우
+* remove: 파일을 삭제하는 작업만 했을 경우
 
-Currently, two official plugins are available:
+## Branch Name
+"label/요약 내용"형식으로 작성
+ex) feat/start-screen
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Code
+* 클래스명: 명사 또는 명사구로 작성
+* 메소드명: 동사 또는 동사구로 작성
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 패키지 설명
+* 아직 없음
