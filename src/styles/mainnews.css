@@ -1,0 +1,78 @@
+/* 주요 뉴스 타이틀 */
+.mainnews h2 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 4px solid #2c7be5;
+    color: #333;
+}
+
+/* 주요 뉴스 리스트 */
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* 주요 뉴스 아이템 카드 */
+.news-item.horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 12px;
+    position: relative;
+}
+
+.news-item.horizontal:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: underline;
+}
+
+/* 주요 뉴스 이미지 (좌측) */
+.news-thumbnail.horizontal {
+    width: 46%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 12px;
+    padding: 10px;
+}
+
+/* 텍스트 컨테이너 */
+.news-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 주요 뉴스 제목 */
+.news-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 6px;
+    margin-bottom: 0px;
+}
+
+/* 주요 뉴스 요약 */
+.news-summary {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+    margin-top: 8px;
+    margin-left: 4px;
+}
+
+/* 주요 뉴스 언론사 · 날짜 */
+.news-meta {
+    position: absolute;
+    bottom: 6px; 
+    font-size: 12px;
+    color: #999;
+}

@@ -1,4 +1,2 @@
-/* 공통적으로 적용할 앱 배경 같은 스타일이 있으면 여기에 */
-body {
-  background-color: #a9a9ad;
-}
+body { margin: 0; }
+	div { box-sizing: border-box }

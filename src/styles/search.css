@@ -1,0 +1,25 @@
+.header-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; /* 부모 안에서 최대한 넓게 */
+    max-width: 500px; /* 너무 넓어지지 않게 제한 */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 6px 12px;
+    background-color: white;
+}
+
+.header-search input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
