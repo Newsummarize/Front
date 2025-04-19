@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Log from "../Front/src/pages/log";
+import "./App.css";
 
 function App() {
   return (
-    <div>
-
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Log />} />
+        {/* 추후 SignUp 페이지 추가 예정 */}
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
