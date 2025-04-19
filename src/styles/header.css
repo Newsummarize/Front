@@ -1,0 +1,30 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-left: 32px;
+  padding-right: 32px;
+  background-color: #f5f6f8;
+  margin-bottom: 12px;
+}
+
+/* 중앙 검색창이 늘어날 수 있도록 */
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* 오른쪽 아이콘 영역 */
+.header-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}

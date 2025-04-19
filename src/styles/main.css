@@ -1,0 +1,36 @@
+body {
+  background-color: #f5f6f8;
+}
+
+/* 전체 컨테이너 */
+.main-container {
+  max-width: 1140px;
+  margin: auto;
+  padding: 24px;
+  background-color: #f5f6f8;
+}
+
+/* 뉴스 카드 컨테이너 */
+.news-wrapper {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* 주요 뉴스 왼쪽 */
+.mainnews {
+  flex: 2;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* 추천 뉴스 오른쪽 */
+.recommend {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}

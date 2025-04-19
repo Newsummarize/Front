@@ -1,7 +1,8 @@
-/* 기본 리셋 + 글로벌 스타일 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
