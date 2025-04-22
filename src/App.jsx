@@ -4,6 +4,7 @@ import './App.css'
 import Login from './pages/Login';
 import Join from './pages/Join';
 import Main from './pages/Main';
+import Keyword from './pages/Keyword';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/join" element={<Join />} />
       <Route path="/main" element={<Main />} />
-      <Route path="/" element={<Main />} /> {/* 제일 먼저 뜨는 페이지: 로그인 페이지 */}
+      <Route path="/" element={<Keyword />} /> {/* 제일 먼저 뜨는 페이지 */}
     </Routes>
   );
 }
