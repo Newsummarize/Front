@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom"; // 🔹 검색어 가져오기
 import Header from "../components/Header";
 import KeywordNews from "../components/KeywordNews";
 import AISummary from "../components/AISummary";
@@ -30,13 +31,15 @@ const dummyArticles = [
 ];
 
 function Keyword() {
+  const { keyword } = useParams(); // 🔹 URL의 키워드 파라미터 추출
+
   return (
     <div className="keyword-page">
       <Header />
       <main className="keyword-content">
         <div className="keyword-container">
           {/* 좌측 뉴스 영역 */}
-          <KeywordNews articles={dummyArticles} title="News →" />
+          <KeywordNews articles={dummyArticles} title={`"${keyword}" 연관 뉴스`} />
 
           {/* 우측 요약/트래픽 영역 */}
           <div className="keyword-side">

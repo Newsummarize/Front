@@ -18,7 +18,7 @@
 }
 
 /* 뉴스 리스트 */
-.news-list {
+.keyword-news-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -28,7 +28,7 @@
 }
 
 /* 뉴스 아이템 카드 */
-.news-item.horizontal {
+.keyword-news-item.horizontal {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -36,15 +36,16 @@
     background-color: #fff;
     border-radius: 12px;
     position: relative;
+    cursor: pointer;
 }
 
-.news-item.horizontal:hover {
+.keyword-news-item.horizontal:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-decoration: underline;
 }
 
 /* 뉴스 이미지 (좌측) */
-.news-thumbnail.horizontal {
+.keyword-news-thumbnail.horizontal {
     width: 46%;
     aspect-ratio: 3 / 2;
     object-fit: cover;
@@ -54,14 +55,14 @@
 }
 
 /* 텍스트 컨테이너 */
-.news-content {
+.keyword-news-content {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 /* 뉴스 제목 */
-.news-title {
+.keyword-news-title {
     font-size: 17px;
     font-weight: 600;
     color: #333;
@@ -70,7 +71,7 @@
 }
 
 /* 뉴스 요약 */
-.news-summary {
+.keyword-news-summary {
     font-size: 14px;
     color: #555;
     line-height: 1.4;
@@ -79,7 +80,7 @@
 }
 
 /* 뉴스 언론사 · 날짜 */
-.news-meta {
+.keyword-news-meta {
     position: absolute;
     bottom: 6px; 
     font-size: 12px;

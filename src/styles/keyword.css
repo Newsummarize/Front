@@ -11,7 +11,7 @@
   background-color: #f5f6f8;
 }
 
-/* 💡 Main 페이지처럼 가운데 정렬 + 양옆 여백 */
+/* Main 페이지처럼 가운데 정렬 + 양옆 여백 */
 .keyword-container {
   display: flex;
   gap: 24px;
