@@ -1,0 +1,41 @@
+.keyword-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f5f6f8;
+}
+
+.keyword-content {
+  padding: 24px;
+  background-color: #f5f6f8;
+}
+
+/* 💡 Main 페이지처럼 가운데 정렬 + 양옆 여백 */
+.keyword-container {
+  display: flex;
+  gap: 24px;
+  padding: 16px;
+  max-width: 1140px;
+  margin: 0 auto;   /* ⬅️ 가운데 정렬 */
+  height: 100%;
+}
+
+/* 좌측 뉴스 영역 */
+.keyword-container > .keywordnews {
+  flex: 3;
+}
+
+/* 우측 요약/트래픽 영역 */
+.keyword-side {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+/* 요약/트래픽 박스 높이 동일 */
+.keyword-side > * {
+  flex: 1;
+}

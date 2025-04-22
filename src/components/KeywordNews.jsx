@@ -1,8 +1,8 @@
-import '../styles/mainnews.css';
+import '../styles/keywordnews.css';
 
-function MainNews({ articles, title }) {
+function KeywordNews({ articles, title }) {
   return (
-    <div className="mainnews">
+    <div className="keywordnews">
       <h2>{title}</h2>
       <ul className="news-list">
         {articles.map((news, idx) => (
@@ -26,4 +26,4 @@ function MainNews({ articles, title }) {
   );
 }
 
-export default MainNews;
+export default KeywordNews;
