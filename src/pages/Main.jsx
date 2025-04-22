@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
 import Category from '../components/Category';
 import MainNews from '../components/MainNews';
 import Recommend from '../components/Recommend';
@@ -63,18 +62,14 @@ function MainPage() {
   };
 
   return (
-    <>
-      <Header /> {/* 상단에 추가(로고, 검색창) */}
-  
-      <div className="main-container">
-        <Category selected={selectedCategory} onSelect={setSelectedCategory} />
-  
-        <div className="news-wrapper">
-          <MainNews articles={mainNews} title="🔥 주요 뉴스" />
-          <Recommend articles={recommend} title="🎯 추천" />
-        </div>
+    <div className="main-container">
+      <Category selected={selectedCategory} onSelect={setSelectedCategory} />
+
+      <div className="news-wrapper">
+        <MainNews articles={mainNews} title="🔥 주요 뉴스" />
+        <Recommend articles={recommend} title="🎯 추천" />
       </div>
-    </>
+    </div>
   );
 }
 

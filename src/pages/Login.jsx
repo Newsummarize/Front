@@ -7,30 +7,30 @@ function Login() {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // 기본 submit 동작(새로고침) 방지
-        navigate("/main");  // 메인 페이지로 이동
+        e.preventDefault();
+        navigate("/main");
     };
 
     return (
-        <div className="login-page">
+        <div className="login-container">
             <div className="login-box">
                 <h2>로그인</h2>
                 <form onSubmit={handleSubmit}>
-                    <label>Email</label>
-                    <input type="email" placeholder="이메일" />
+                    <label>이메일</label>
+                    <input type="email" placeholder="Email" />
 
-                    <label>Password</label>
+                    <label>비밀번호</label>
                     <div className="password-wrapper">
                         <input
                             type={showPassword ? "text" : "password"}
-                            placeholder="비밀번호"
+                            placeholder="password"
                         />
                     </div>
 
                     <button type="submit">Log In</button>
                 </form>
-                <p>
-                    아직 회원이 아니신가요? <Link to="/join"><strong>Sign Up</strong></Link>
+                <p className="login-guide">
+                    아직 회원이 아니신가요?{"\u00A0"} <Link to="/join"><strong>Sign Up</strong></Link>
                 </p>
             </div>
         </div>
