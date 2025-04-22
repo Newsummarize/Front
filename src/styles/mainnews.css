@@ -27,6 +27,7 @@
     background-color: #fff;
     border-radius: 12px;
     position: relative;
+    cursor: pointer;
 }
 
 .news-item.horizontal:hover {

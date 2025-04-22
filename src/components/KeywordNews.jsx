@@ -4,20 +4,20 @@ function KeywordNews({ articles, title }) {
   return (
     <div className="keywordnews">
       <h2>{title}</h2>
-      <ul className="news-list">
+      <ul className="keyword-news-list">
         {articles.map((news, idx) => (
-          <li key={idx} className="news-item horizontal">
+          <li key={idx} className="keyword-news-item horizontal">
             <img
               src={news.imageUrl || '/src/assets/default.png'}
               alt="뉴스 썸네일"
-              className="news-thumbnail horizontal"
+              className="keyword-news-thumbnail horizontal"
             />
-            <div className="news-content">
+            <div className="keyword-news-content">
               <div>
-                <p className="news-title">{news.title}</p>
-                <p className="news-summary">{news.summary}</p>
+                <p className="keyword-news-title">{news.title}</p>
+                <p className="keyword-news-summary">{news.summary}</p>
               </div>
-              <p className="news-meta">{news.press} · {news.time}</p>
+              <p className="keyword-news-meta">{news.press} · {news.time}</p>
             </div>
           </li>
         ))}
