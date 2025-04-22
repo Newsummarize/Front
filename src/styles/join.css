@@ -1,67 +1,129 @@
-/* sign.css */
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #b3b3b3;
-}
-  
-.signup-container {
+.join-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 50px 0px; /* 상하좌우 여백 추가 */
+  background-color: #f5f6f8;
+  box-sizing: border-box;
 }
-  
-.signup-box {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 400px;
+
+.join-box {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-  
-.signup-box h2 {
-  margin-bottom: 1rem;
+
+.join-box h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
-  
-.signup-box form {
+
+.join-box form {
   display: flex;
   flex-direction: column;
 }
-  
-.signup-box input[type="text"],
-.signup-box input[type="email"],
-.signup-box input[type="password"] {
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+
+.join-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
-  
+
+.join-box input[type="text"],
+.join-box input[type="email"],
+.join-box input[type="radio"],
+.join-box input[type="password"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #e7e7e7;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.gender-selection label {
+  display: flex;
+  align-items: baseline;
+  gap: 5px; /* 라디오 버튼과 텍스트 사이에 간격 추가 */
+  margin-top: 4px;
+  font-size: 16px;
+  cursor: pointer; /* 손가락 모양 커서 */
+}
+
+/* 드롭다운 */
+select {
+  padding: 10px; /* 내부 여백을 키워서 드롭다운 항목들이 보이게 */
+  font-size: 14px; /* 글씨 크기 확대 */
+  max-height: 40px; /* 드롭다운 높이 */
+  border-radius: 4px;
+  background-color: #e7e7e7;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: none;
+  position: relative;
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+}
+
 .category-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 1rem;
+  gap: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  justify-content: space-between; /* 항목들이 고르게 분포되도록 설정 */
 }
-  
+
 .category-options label {
   display: flex;
   align-items: center;
   gap: 4px;
-}
-  
-.signup-box button {
-  padding: 12px;
-  background-color: #222;
-  color: white;
-  border: none;
-  border-radius: 6px;
+  font-size: 15.5px;
+  flex-basis: calc(33.33% - 10px); /* 항목들이 3개씩 정렬되도록 지정 */
   cursor: pointer;
 }
-  
-.signup-box a {
-  color: black;
+
+/* 체크박스에 마우스 올리면 손가락 모양 */
+.category-options input[type="checkbox"] {
+  cursor: pointer; /* 체크박스 네모에도 커서가 손가락으로 바뀌게 */
+}
+
+.join-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #2c2c2c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.join-guide {
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: left;
+  color: #808080;
+}
+
+.join-box a {
+  color: #2c2c2c;
   font-weight: bold;
   text-decoration: none;
+  font-size: 14px;
 }
+
+.join-box a:hover {
+  text-decoration: underline;
+}
+

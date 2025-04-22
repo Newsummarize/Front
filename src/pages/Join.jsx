@@ -1,17 +1,20 @@
-// sign.jsx
+// join.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // 페이지 옮기는 데 사용
 import '/src/styles/join.css';
 
-const categories = ['정치', '경제', '사회', '생활', '연예', '스포츠', 'IT/과학'];
+const currentYear = new Date().getFullYear(); // 현재 연도
+const categories = ['정치', '경제', '사회', '생활/문화', 'IT/과학', '세계'];
 
 function Join() {
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    birthYear: '',
-    birthMonth: '',
-    birthDay: '',
+    gender: '',
+    birthYear: '',  // 연도
+    birthMonth: '', // 월
+    birthDay: '',   // 일
     password: '',
     passwordCheck: '',
     category: [],
@@ -39,9 +42,9 @@ function Join() {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-box">
-        <h2>Sign Up</h2>
+    <div className="join-container">
+      <div className="join-box">
+        <h2>회원가입</h2>
         <form onSubmit={handleSubmit}>
           <label>이름</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
@@ -49,31 +52,76 @@ function Join() {
           <label>이메일</label>
           <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
 
+          <label>성별</label>
+          <div style={{ display: 'flex', gap: '20px' }} className="gender-selection">
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                checked={formData.gender === 'male'}
+                onChange={handleChange}
+              />
+              남성
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                checked={formData.gender === 'female'}
+                onChange={handleChange}
+              />
+              여성
+            </label>
+          </div>
+
           <label>생년월일</label>
           <div style={{ display: 'flex', gap: '10px' }}>
-            <input
-              type='number'
-              placeholder='연'
-              value={formData.birthYear}
-              onChange={(e) => setFormData({ ...formData, birthYear: e.target.value })}
-            />
-
+            {/* 연도 드롭다운 */}
             <select
-              value={formData.birthMonth}
-              onChange={(e) => setFormData({ ...formData, birthMonth: e.target.value })}
+              name="birthYear"
+              value={formData.birthYear}
+              onChange={handleChange}
             >
-              <option value="">월</option>
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>{i + 1}월</option>
+              <option value="">연도</option>
+              {/* 현재 연도부터 80년 전까지 선택 */}
+              {Array.from({ length: 81 }, (_, i) => (
+                <option key={currentYear - i} value={currentYear - i}>
+                  {currentYear - i}
+                </option>
               ))}
             </select>
 
-            <input
-              type='number'
-              placeholder='일'
+            {/* 월 드롭다운 */}
+            <select
+              name="birthMonth"
+              value={formData.birthMonth}
+              onChange={handleChange}
+            >
+              <option value="">월</option>
+              {/* 1월부터 12월까지 선택 */}
+              {Array.from({ length: 12 }, (_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}월
+                </option>
+              ))}
+            </select>
+
+            {/* 일 드롭다운 */}
+            <select
+              name="birthDay"
               value={formData.birthDay}
-              onChange={(e) => setFormData({ ...formData, birthDay: e.target.value })}
-            />
+              onChange={handleChange}
+            >
+              <option value="">일</option>
+              {/* 1일부터 31일까지 날짜 선택 */}
+              {Array.from({ length: 31 }, (_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}일
+                </option>
+              ))}
+            </select>
           </div>
 
           <label>비밀번호</label>
@@ -100,7 +148,7 @@ function Join() {
 
           <button type="submit">Sign Up</button>
         </form>
-        <p>이미 계정이 있으신가요? <Link to="/login"><strong>Log In</strong></Link></p> {/* Log In 눌렀을 때 Join 페이지로 이동동 */}
+        <p className="join-guide">이미 계정이 있으신가요?{"\u00A0"} <Link to="/login"><strong>Log In</strong></Link></p> {/* Log In 눌렀을 때 Login 페이지로 이동 */}
       </div>
     </div>
   );
