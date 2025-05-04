@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Category from '../components/Category';
 import MainNews from '../components/MainNews';
 import Recommend from '../components/Recommend';
@@ -15,51 +16,40 @@ function MainPage() {
   }, [selectedCategory]);
 
   const fetchNewsData = async () => {
-    // 실제 네이버 뉴스 API 연동 시 axios로 대체
-    setMainNews([
-      {
-        imageUrl: '', // 없으면 기본 썸네일로 대체됨
-        title: '오늘의 주요 뉴스1 기사 제목이 길어지면 어떻게 될까...',
-        summary: 'AI 요약 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 과연 몇글자까지 될까 백칠십',
-        press: '언론사',
-        time: '날짜',
-      },
-      {
-        imageUrl: '',
-        title: '오늘의 주요 뉴스2',
-        summary: 'AI 요약',
-        press: '언론사',
-        time: '날짜',
-      },
-      {
-        imageUrl: '',
-        title: '오늘의 주요 뉴스3',
-        summary: 'AI 요약',
-        press: '언론사',
-        time: '날짜',
-      },
-      {
-        imageUrl: '',
-        title: '오늘의 주요 뉴스4',
-        summary: 'AI 요약',
-        press: '언론사',
-        time: '날짜',
-      },
-    ]);
-    setRecommend([
-      {
-        imageUrl: '',
-        title: '사용자 추천 뉴스1 기사 제목이 길어지면 어떻게 될까...',
-        summary: 'AI 요약',
-      },
-      {
-        imageUrl: '',
-        title: '추천 뉴스2',
-        summary: 'AI 요약',
-      },
-    ]);
+    try {
+      const resMain = await axios.get('https://newsummarize.com/api/news/main', {
+        withCredentials: true
+      });
+      console.log("응답 전체:", resMain.data);
 
+      // const resRecommend = await axios.get('https://newsummarize.com/api/news/recommend', {
+      //   withCredentials: true
+      // });
+      // console.log("응답 전체:", resRecommend.data);
+
+      const mainNews = resMain.data;
+      // const recommend = resRecommend.data;
+  
+      setMainNews(mainNews.map(news => ({
+        imageUrl: news.imageUrl,
+        title: news.title,
+        summary: news.content || "요약없음", 
+        press: news.publisher,
+        time: news.publishedAt,
+      })));
+  
+      // setRecommend(recommend.map(news => ({
+      //   imageUrl: news.imageUrl,
+      //   title: news.title,
+      //   summary: news.content || "요약없음",
+      //   press: news.publisher,
+      //   time: news.publishedAt,
+      // })));
+    } catch (error) {
+      console.error('뉴스 데이터 불러오기 실패', error);
+    }
   };
+  
 
   return (
     <div className="main-container">
