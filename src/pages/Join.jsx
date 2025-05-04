@@ -1,20 +1,20 @@
 // join.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // 페이지 옮기는 데 사용
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import '/src/styles/join.css';
 
-const currentYear = new Date().getFullYear(); // 현재 연도
+const currentYear = new Date().getFullYear();
 const categories = ['정치', '경제', '사회', '생활/문화', 'IT/과학', '세계'];
 
 function Join() {
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     gender: '',
-    birthYear: '',  // 연도
-    birthMonth: '', // 월
-    birthDay: '',   // 일
+    birthYear: '',
+    birthMonth: '',
+    birthDay: '',
     password: '',
     passwordCheck: '',
     category: [],
@@ -35,10 +35,49 @@ function Join() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // 여기에 실제 회원가입 로직 추가 가능
+
+    if (formData.password !== formData.passwordCheck) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    const postData = {
+      userName: formData.name,
+      year: parseInt(formData.birthYear),
+      month: parseInt(formData.birthMonth),
+      day: parseInt(formData.birthDay),
+      gender: formData.gender === 'male' ? 'M' : 'F',
+      email: formData.email,
+      password: formData.password,
+      confirmPassword: formData.passwordCheck,
+      interests: formData.category
+    };
+
+    try {
+      const res = await axios.post('https://newsummarize.com/api/users', postData, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        // withCredentials: true
+      });
+
+      console.log('회원가입 성공:', res.data);
+      alert('회원가입이 완료되었습니다!');
+    } catch (error) {
+      console.error('회원가입 실패:', error);
+    
+      if (error.response) {
+        if (error.response.status === 403) {
+          alert("이미 가입된 이메일입니다.");
+        } else {
+          alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+        }
+      } else {
+        alert("네트워크 오류가 발생했습니다.");
+      }
+    }    
   };
 
   return (
@@ -78,14 +117,8 @@ function Join() {
 
           <label>생년월일</label>
           <div style={{ display: 'flex', gap: '10px' }}>
-            {/* 연도 드롭다운 */}
-            <select
-              name="birthYear"
-              value={formData.birthYear}
-              onChange={handleChange}
-            >
+            <select name="birthYear" value={formData.birthYear} onChange={handleChange}>
               <option value="">연도</option>
-              {/* 현재 연도부터 80년 전까지 선택 */}
               {Array.from({ length: 81 }, (_, i) => (
                 <option key={currentYear - i} value={currentYear - i}>
                   {currentYear - i}
@@ -93,14 +126,8 @@ function Join() {
               ))}
             </select>
 
-            {/* 월 드롭다운 */}
-            <select
-              name="birthMonth"
-              value={formData.birthMonth}
-              onChange={handleChange}
-            >
+            <select name="birthMonth" value={formData.birthMonth} onChange={handleChange}>
               <option value="">월</option>
-              {/* 1월부터 12월까지 선택 */}
               {Array.from({ length: 12 }, (_, i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}월
@@ -108,14 +135,8 @@ function Join() {
               ))}
             </select>
 
-            {/* 일 드롭다운 */}
-            <select
-              name="birthDay"
-              value={formData.birthDay}
-              onChange={handleChange}
-            >
+            <select name="birthDay" value={formData.birthDay} onChange={handleChange}>
               <option value="">일</option>
-              {/* 1일부터 31일까지 날짜 선택 */}
               {Array.from({ length: 31 }, (_, i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}일
@@ -148,7 +169,12 @@ function Join() {
 
           <button type="submit">Sign Up</button>
         </form>
-        <p className="join-guide">이미 계정이 있으신가요?{"\u00A0"} <Link to="/login"><strong>Log In</strong></Link></p> {/* Log In 눌렀을 때 Login 페이지로 이동 */}
+        <p className="join-guide">
+          이미 계정이 있으신가요?{" "}
+          <Link to="/login">
+            <strong>Log In</strong>
+          </Link>
+        </p>
       </div>
     </div>
   );
