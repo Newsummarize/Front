@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Join from './pages/Join';
 import Main from './pages/Main';
 import Keyword from './pages/Keyword';
+import My from './pages/My';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="/join" element={<Join />} />
         <Route path="/main" element={<Main />} />
         <Route path="/keyword/:keyword" element={<Keyword />} />
-        <Route path="/" element={<Main />} /> {/* 제일 먼저 뜨는 페이지 */}
+        <Route path="/" element={<My />} /> {/* 제일 먼저 뜨는 페이지 */}
       </Routes>
     </>
   );
