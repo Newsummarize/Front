@@ -1,11 +1,11 @@
 .mypage-bg {
-    background: #bdbdbd;
+    background: #f5f6fa;
     min-height: 100vh;
     padding: 40px;
   }
   
   .mypage-container {
-    background: #ededed;
+    background: #fff;
     width: 900px;
     margin: 40px auto;
     border-radius: 30px;
@@ -17,10 +17,16 @@
     width: 240px;
     padding: 60px 0 0 40px;
   }
+
+  .mypage-content-title {
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+  }
   
   .mypage-title {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1rem;
   }
   
   .mypage-content {
