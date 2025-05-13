@@ -16,8 +16,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/main" element={<Main />} />
+        <Route path="/my" element={<My />} />
         <Route path="/keyword/:keyword" element={<Keyword />} />
-        <Route path="/" element={<My />} /> {/* 제일 먼저 뜨는 페이지 */}
+        <Route path="/" element={<Main />} /> {/* 제일 먼저 뜨는 페이지 */}
       </Routes>
     </>
   );

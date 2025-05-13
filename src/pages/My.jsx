@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom'; // 페이지 옮기는 데 사용
 import '/src/styles/my.css';
 
 function MyPage() {
+
+    const [selectedMenu, setselectedMenu] = useState("개인정보");
+
     const [form, setForm] = useState({
       name: "",
       email: "",
+      gender: "",
       category: ""
     });
   
@@ -29,6 +33,7 @@ function MyPage() {
           {/* 세로 점선 divider 추가 */}
           <div className="mypage-vertical-divider"></div>
           <div className="mypage-content">
+            <div className="mypage-content-title">{selectedMenu}</div>
             <form onSubmit={handleSubmit}>
               <div className="mypage-form-group">
                 <label>이름</label>
@@ -47,6 +52,16 @@ function MyPage() {
                   name="email"
                   placeholder="Email"
                   value={form.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mypage-form-group">
+                <label>성별</label>
+                <input
+                  type="gender"
+                  name="gender"
+                  placeholder="Gender"
+                  value={form.gender}
                   onChange={handleChange}
                 />
               </div>
