@@ -1,87 +1,141 @@
+body {
+  overflow: hidden;
+}
+
 .mypage-bg {
-    background: #f5f6fa;
-    min-height: 100vh;
-    padding: 40px;
-  }
-  
-  .mypage-container {
-    background: #fff;
-    width: 900px;
-    margin: 40px auto;
-    border-radius: 30px;
-    display: flex;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  
-  .mypage-sidebar {
-    width: 240px;
-    padding: 60px 0 0 40px;
-  }
-
-  .mypage-content-title {
-    font-weight: bold;
-    font-size: 1.8rem;
-    margin-bottom: 32px;
-  }
-  
-  .mypage-title {
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  
-  .mypage-content {
-    flex: 1;
-    padding: 60px 40px;
-  }
-  
-  .mypage-form-group {
-    margin-bottom: 24px;
-  }
-  
-  .mypage-form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  
-  .mypage-form-group input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    box-sizing: border-box;
-    background: #fff;
-    transition: border 0.2s;
-  }
-  
-  .mypage-form-group input:focus {
-    border: 1.5px solid #888;
-    outline: none;
-  }
-  
-  .mypage-submit-btn {
-    width: 100%;
-    padding: 14px;
-    background: #222;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  
-  .mypage-submit-btn:hover {
-    background: #444;
-  }
-
-  .mypage-vertical-divider {
-    width: 0;
-    border-left: 2px dotted #bbb;
-    margin: 40px 0;
-    min-height: 300px;
-    align-self: stretch;
-  }
+  background: #f5f6f8;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+.mypage-container {
+  display: flex;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fafbfc;
+  border-radius: 20px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 40px 40px;
+  align-items: flex-start;
+}
+.mypage-sidebar {
+  min-width: 140px;
+  margin-right: 32px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.mypage-sidebar-item {
+  cursor: pointer;
+  margin-bottom: 18px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #333;
+  transition: color 0.2s;
+}
+.mypage-sidebar-item.active {
+  font-weight: 700;
+  color: #222;
+}
+.mypage-vertical-divider {
+  width: 1px;
+  background: #e0e0e0;
+  height: 420px;
+  margin-right: 32px;
+}
+.mypage-content {
+  flex: 1;
+}
+.mypage-content-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-bottom: 50px;
+}
+.mypage-info-row {
+  display: flex;
+  align-items: center;       /* 라벨과 값이 한 줄에, 수직 중앙 정렬 */
+  margin-top: 10px;
+  margin-bottom: 24px;       /* 행 간격 일정하게 */
+}
+.mypage-info-label {
+  min-width: 130px;          /* 라벨 너비 고정 */
+  font-size: 15px;
+  font-weight: bold;
+  color: #7d7d7d;
+  margin-top: 5px;
+  margin-left: 40px;
+  margin-right: 40px;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+.mypage-info-row:last-child {
+  margin-bottom: 0;
+}
+.mypage-info-row > span:not(.mypage-info-label) {
+  display: flex;
+  align-items: center;
+  gap: 12px;                 /* 값들 사이 간격 */
+}
+.mypage-category-chip {
+  display: inline-block;
+  background: #e6f8ee;
+  color: #1abc5b;
+  border-radius: 16px;
+  padding: 4px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #bfe7d2;
+}
+.mypage-info-value {
+  display: flex;
+  flex-direction: column;   /* 세로로 정렬 */
+  align-items: flex-start;  /* 왼쪽 정렬 */
+  gap: 0;                   /* 필요시 간격 조정 */
+}
+.mypage-keyword-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mypage-keyword-input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 180px;
+  box-sizing: border-box;
+}
+.mypage-keyword-add-btn {
+  padding: 0 18px;
+  height: 40px;
+  font-size: 1rem;
+  background: #6fc36f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mypage-keyword-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.mypage-keyword-chip {
+  display: inline-block;
+  background: #f1f8f4;
+  color: #222;
+  border-radius: 14px;
+  padding: 4px 12px;
+  font-size: 1rem;
+  position: relative;
+}
+.mypage-keyword-delete-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  margin-left: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
