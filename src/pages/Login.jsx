@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 import "/src/styles/login.css";
 
 function Login() {
@@ -8,6 +9,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+    const { login } = useAuth();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -23,6 +25,7 @@ function Login() {
   
         console.log("로그인 성공:", res.data);
         alert("로그인 성공!");
+        login(res.data);
         navigate("/main");
       } catch (error) {
         console.error("로그인 실패:", error);

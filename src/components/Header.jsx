@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // navigate, location
+import { useAuth } from "../context/AuthContext";
 import "../styles/header.css";
 
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isLoggedIn, logout } = useAuth();
 
   // 로그인/회원가입 페이지에서는 Search + 버튼 모두 숨김
   const hideOnPaths = ["/login", "/join"];
@@ -55,8 +57,12 @@ function Header() {
 
       {!shouldHideExtras && (
         <div className="header-icons">
-          <button className="icon-button" onClick={() => navigate("/login")}>👤</button>
-          <button className="icon-button">❓</button>
+          <button className="icon-button" 
+            onClick={() => navigate(isLoggedIn ? "/my" : "/login")}>👤
+          </button>
+          <button className="icon-button"
+            onClick={() => logout()}>❓
+          </button>
         </div>
       )}
     </header>
