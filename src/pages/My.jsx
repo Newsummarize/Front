@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '/src/styles/my.css';
 
 function MyPage() {
@@ -28,6 +28,14 @@ function MyPage() {
   const handleRemoveKeyword = (removeIdx) => {
     setKeywords(keywords.filter((_, idx) => idx !== removeIdx));
   };
+
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    }
+  }, []);
 
   return (
     <div className="mypage-bg">
@@ -118,7 +126,10 @@ function MyPage() {
             </>
           )}
           {selectedMenu === "로그아웃" && (
-            <div>로그아웃 하시겠습니까?</div>
+            <div className="mypage-logout-center">
+              <div className="mypage-logout-message">로그아웃 하시겠습니까?</div>
+              <button className="mypage-logout-btn">로그아웃</button>
+            </div>
           )}
         </div>
       </div>

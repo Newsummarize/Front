@@ -2,9 +2,9 @@
   background: #f5f6f8;
   min-height: 100vh;
   padding: 40px 0;
-  overflow: hidden;
 }
 .mypage-container {
+  overflow: hidden;
   display: flex;
   max-width: 900px;
   margin: 40px auto;
@@ -16,13 +16,15 @@
 }
 .mypage-sidebar {
   min-width: 140px;
-  margin-right: 32px;
-  display: flex;
+  margin-left: 32px;
+  display: auto;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 }
 .mypage-sidebar-item {
   cursor: pointer;
+  align-items: center;
   margin-bottom: 18px;
   font-size: 15px;
   font-weight: 400;
@@ -31,7 +33,7 @@
 }
 .mypage-sidebar-item.active {
   font-weight: 700;
-  color: #222;
+  color: #2c7be5;
 }
 .mypage-vertical-divider {
   width: 1px;
@@ -41,6 +43,15 @@
 }
 .mypage-content {
   flex: 1;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.mypage-content::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
 }
 .mypage-content-title {
   font-size: 20px;
@@ -50,7 +61,7 @@
 }
 .mypage-info-row {
   display: flex;
-  align-items: center;       /* 라벨과 값이 한 줄에, 수직 중앙 정렬 */
+  align-items: flex-start;       /* 라벨과 값이 한 줄에, 수직 중앙 정렬 */
   margin-top: 10px;
   margin-bottom: 24px;       /* 행 간격 일정하게 */
 }
@@ -75,19 +86,20 @@
 }
 .mypage-category-chip {
   display: inline-block;
-  background: #e6f8ee;
-  color: #1abc5b;
+  background: #e6edf8;
+  color: #1a66bc;
   border-radius: 16px;
   padding: 4px 16px;
   font-size: 16px;
   font-weight: 600;
-  border: 1px solid #bfe7d2;
+  border: 1px solid #bfcce7;
 }
 .mypage-info-value {
   display: flex;
   flex-direction: column;   /* 세로로 정렬 */
-  align-items: flex-start;  /* 왼쪽 정렬 */
-  gap: 0;                   /* 필요시 간격 조정 */
+  align-items: center;  /* 왼쪽 정렬 */
+  gap: 16px;                   /* 필요시 간격 조정 */
+  flex-wrap: wrap;
 }
 .mypage-keyword-section {
   display: flex;
@@ -106,7 +118,7 @@
   padding: 0 18px;
   height: 40px;
   font-size: 1rem;
-  background: #6fc36f;
+  background: #2c7be5;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -114,25 +126,62 @@
   white-space: nowrap;
 }
 .mypage-keyword-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(max-content, 1fr));
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   margin-top: 8px;
+  justify-content: start;
 }
 .mypage-keyword-chip {
-  display: inline-block;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #f1f8f4;
   color: #222;
   border-radius: 14px;
-  padding: 4px 12px;
+  padding: 8px 0;
   font-size: 1rem;
   position: relative;
+  width: fit-content;
+  min-width: 0;
 }
 .mypage-keyword-delete-btn {
   background: none;
   border: none;
-  color: #e74c3c;
+  color: #1a66bc;
   margin-left: 6px;
   font-size: 15px;
   cursor: pointer;
+}
+.mypage-logout-center {
+  width: 100%;
+  height: 100%; /* 원하는 높이로 조정 */
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mypage-logout-message {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: #333;
+  font-weight: 500;
+}
+.mypage-logout-btn {
+  padding: 0 32px;
+  height: 44px;
+  font-size: 1.1rem;
+  background: #1a66bc;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.mypage-logout-btn:hover {
+  background: #1a66bc;
 }
