@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '/src/styles/my.css';
 
 function MyPage() {
@@ -28,6 +28,14 @@ function MyPage() {
   const handleRemoveKeyword = (removeIdx) => {
     setKeywords(keywords.filter((_, idx) => idx !== removeIdx));
   };
+
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    }
+  }, []);
 
   return (
     <div className="mypage-bg">
@@ -101,24 +109,31 @@ function MyPage() {
                   </div>
                   <div className="mypage-keyword-list">
                     {keywords.map((kw, idx) => (
-                      <span key={idx} className="mypage-keyword-chip">
-                        {kw}
-                        <button
-                          type="button"
-                          className="mypage-keyword-delete-btn"
-                          onClick={() => handleRemoveKeyword(idx)}
-                        >
-                          ×
-                        </button>
-                      </span>
-                    ))}
-                  </div>
+                      <span key={idx} className="mypage-category-chip" style={{display: "inline-flex", 
+                      alignItems: "center", marginRight: "8px", marginBottom: "8px"}}>
+                    {kw}
+                    <button
+                      type="button"
+                      className="mypage-keyword-delete-btn"
+                      onClick={() => handleRemoveKeyword(idx)}
+                      style={{marginLeft: "6px", background: "none", border: "none", color: "#1a66bc", 
+                      fontSize: "15px", cursor: "pointer"}}
+                      aria-label="키워드 삭제"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
                 </span>
               </div>
             </>
           )}
           {selectedMenu === "로그아웃" && (
-            <div>로그아웃 하시겠습니까?</div>
+            <div className="mypage-logout-center">
+              <div className="mypage-logout-message">로그아웃 하시겠습니까?</div>
+              <button className="mypage-logout-btn">로그아웃</button>
+            </div>
           )}
         </div>
       </div>
