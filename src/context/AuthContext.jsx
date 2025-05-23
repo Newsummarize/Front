@@ -3,32 +3,32 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // 사용자 정보
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 여부
+  const [token, setToken] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // 앱 시작 시 localStorage에서 로그인 정보 로드
+  // 앱 시작 시 localStorage에서 토큰 로드
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
       setIsLoggedIn(true);
     }
   }, []);
 
-  const login = (userData) => {
-    setUser(userData);
+  const login = (receivedToken) => {
+    setToken(receivedToken);
     setIsLoggedIn(true);
-    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("token", receivedToken);
   };
 
   const logout = () => {
-    setUser(null);
+    setToken(null);
     setIsLoggedIn(false);
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ token, isLoggedIn, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
