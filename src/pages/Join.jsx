@@ -60,7 +60,6 @@ function Join() {
         headers: {
           'Content-Type': 'application/json'
         },
-        // withCredentials: true
       });
 
       console.log('회원가입 성공:', res.data);

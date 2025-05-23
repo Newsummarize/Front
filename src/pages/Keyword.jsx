@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom"; // 🔹 검색어 가져오기
+import { useParams } from "react-router-dom"; // 검색어 가져오기
 import KeywordNews from "../components/KeywordNews";
 import AISummary from "../components/AISummary";
 import Traffic from "../components/Traffic";
@@ -30,7 +30,7 @@ const dummyArticles = [
 ];
 
 function Keyword() {
-  const { keyword } = useParams(); // 🔹 URL의 키워드 파라미터 추출
+  const { keyword } = useParams(); // URL의 키워드 파라미터 추출
 
   return (
     <div className="keyword-page">
