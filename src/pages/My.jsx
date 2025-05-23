@@ -107,24 +107,27 @@ function MyPage() {
                       추가
                     </button>
                   </div>
-                  <div className="mypage-keyword-list">
-                    {keywords.map((kw, idx) => (
-                      <span key={idx} className="mypage-category-chip" style={{display: "inline-flex", 
-                      alignItems: "center", marginRight: "8px", marginBottom: "8px"}}>
-                    {kw}
-                    <button
-                      type="button"
-                      className="mypage-keyword-delete-btn"
-                      onClick={() => handleRemoveKeyword(idx)}
-                      style={{marginLeft: "6px", background: "none", border: "none", color: "#1a66bc", 
-                      fontSize: "15px", cursor: "pointer"}}
-                      aria-label="키워드 삭제"
-                    >
-                      ×
+                </span>
+              </div>
+              <div className="mypage-info-row">
+                <span className="mypage-info-label"></span>
+                <span className="mypage-keyword-list">
+                  {keywords.map((kw, idx) => (
+                    <span key={idx} className="mypage-category-chip" style={{display: "inline-flex", 
+                    alignItems: "center", marginRight: "4px", marginBottom: "4px"}}>
+                  {kw}
+                  <button
+                    type="button"
+                    className="mypage-keyword-delete-btn"
+                    onClick={() => handleRemoveKeyword(idx)}
+                    style={{marginLeft: "6px", background: "none", border: "none", color: "#1a66bc", 
+                    fontSize: "15px", cursor: "pointer"}}
+                    aria-label="키워드 삭제"
+                  >
+                    ×
                     </button>
                   </span>
                 ))}
-              </div>
                 </span>
               </div>
             </>
