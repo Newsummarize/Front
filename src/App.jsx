@@ -7,6 +7,7 @@ import Join from './pages/Join';
 import Main from './pages/Main';
 import Keyword from './pages/Keyword';
 import My from './pages/My';
+import Cate from './pages/CategoryNews'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/join" element={<Join />} />
         <Route path="/main" element={<Main />} />
         <Route path="/my" element={<My />} />
+        <Route path="/cate" element={<Cate />} />
         <Route path="/keyword/:keyword" element={<Keyword />} />
         <Route path="/" element={<Main />} /> {/* 제일 먼저 뜨는 페이지 */}
       </Routes>
