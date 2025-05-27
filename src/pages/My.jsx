@@ -58,7 +58,7 @@ function MyPage() {
 
         {/* 세로 구분선 */}
         <div className="mypage-vertical-divider"></div>
-
+      
         {/* 본문 */}
         <div className="mypage-content">
           {selectedMenu === "개인정보" && (

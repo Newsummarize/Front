@@ -1,0 +1,78 @@
+.news-wrapper {
+  width: 100%;
+  max-width: 800px;      /* 필요시 더 넓게 */
+  margin: 0 auto;
+  background: #f6f7fa;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  padding: 40px 0;
+}
+
+.news-list {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: 40px;
+}
+
+.news-item {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.news-thumbnail img {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.news-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.news-title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.news-summary {
+  margin: 0 0 8px 0;
+  color: #555;
+  font-size: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: #888;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.news-press {
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.news-time {
+  white-space: nowrap;
+}
