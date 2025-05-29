@@ -1,5 +1,12 @@
 import '../styles/recommend.css';
 
+function formatDate(datetimeStr) {
+  if (!datetimeStr) return '';
+  const [date, time] = datetimeStr.split('T');
+  const hhmm = time?.slice(0, 5);
+  return `${date} ${hhmm}`;
+}
+
 function Recommend({ articles, title, isLoggedIn }) {
   return (
     <div className="recommend">
@@ -7,13 +14,19 @@ function Recommend({ articles, title, isLoggedIn }) {
       {isLoggedIn ? (
         <ul className="recommend-list">
           {articles.map((news, idx) => (
-            <li key={idx} className="recommend-item">
+            <li key={idx} className="recommend-item horizontal">
               <img
                 src={news.imageUrl || '/src/assets/default.png'}
                 alt="추천 뉴스 썸네일"
-                className="recommend-thumbnail"
+                className="recommend-thumbnail horizontal"
               />
-              <p className="recommend-title">{news.title}</p>
+              <div className="recommend-content">
+                <div>
+                  <p className="recommend-title">{news.title}</p>
+                  <p className="recommend-summary">{news.summary}</p>
+                </div>
+                <p className="recommend-meta">{news.press} · {formatDate(news.time)}</p>
+              </div>
             </li>
           ))}
         </ul>

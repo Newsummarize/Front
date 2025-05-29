@@ -27,7 +27,7 @@ function Login() {
       localStorage.setItem("token", token); // 저장
       login(token); // useAuth() 안에서 필요 시 처리
       alert("로그인 성공!");
-      navigate("/main");
+      navigate("/");
     } catch (error) {
       console.error("로그인 실패:", error);
       alert("이메일 또는 비밀번호를 확인해주세요.");

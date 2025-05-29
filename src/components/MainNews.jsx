@@ -1,5 +1,12 @@
 import '../styles/mainnews.css';
 
+function formatDate(datetimeStr) {
+  if (!datetimeStr) return '';
+  const [date, time] = datetimeStr.split('T');
+  const hhmm = time?.slice(0, 5);
+  return `${date} ${hhmm}`;
+}
+
 function MainNews({ articles, title }) {
   return (
     <div className="mainnews">
@@ -17,7 +24,7 @@ function MainNews({ articles, title }) {
                 <p className="news-title">{news.title}</p>
                 <p className="news-summary">{news.summary}</p>
               </div>
-              <p className="news-meta">{news.press} · {news.time}</p>
+              <p className="news-meta">{news.press} · {formatDate(news.time)}</p>
             </div>
           </li>
         ))}

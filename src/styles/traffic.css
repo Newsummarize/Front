@@ -1,15 +1,23 @@
 .traffic {
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 20px 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 16px;
   font-size: 16px;
   color: #333;
   min-height: 160px;
   box-sizing: border-box;
 }
 
-/* ✅ 제목 통일 */
+.traffic-image {
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 12px auto;
+  border-radius: 8px;
+}
+
+/* 제목 통일 */
 .traffic h2 {
   font-size: 20px;
   margin-top: 6px;

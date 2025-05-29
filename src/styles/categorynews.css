@@ -1,78 +1,106 @@
-.news-wrapper {
-  width: 100%;
-  max-width: 800px;      /* 필요시 더 넓게 */
-  margin: 0 auto;
-  background: #f6f7fa;
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
-  padding: 40px 0;
+/* 카테고리 뉴스 컨테이너 */
+.categorynews-container {
+  max-width: 1140px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  margin-top: 32px;
 }
 
-.news-list {
-  width: 90%;
+/* 카테고리 뉴스 리스트 */
+.categorynews-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-left: 40px;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
-.news-item {
-  width: 100%;
+/* 카테고리 뉴스 아이템 */
+.cate-news-item.horizontal {
   display: flex;
-  gap: 20px;
-  padding: 16px;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+
+  overflow: hidden;
   box-sizing: border-box;
 }
 
-.news-thumbnail img {
-  width: 200px;
-  height: 120px;
+.cate-news-item.horizontal:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cate-news-item.horizontal:hover .cate-news-title {
+  text-decoration: underline;
+}
+
+/* 이미지 섹션 (좌측) */
+.cate-news-thumbnail.horizontal {
+  width: 22%;
+  aspect-ratio: 5 / 3;
   object-fit: cover;
-  border-radius: 4px;
+  margin-right: 12px;
+  padding: 10px;
 }
 
-.news-content {
+/* 텍스트 컨테이너 */
+.cate-news-content {
   flex: 1;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.news-title {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+/* 뉴스 제목 */
+.cate-news-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 6px;
+  margin-bottom: 0px;
 
-.news-summary {
-  margin: 0 0 8px 0;
-  color: #555;
-  font-size: 15px;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+
+  line-clamp: 1;
+  word-break: break-word;
+
+  line-height: 1.4;
+  min-height: calc(1.4em * 1);
 }
 
-.news-meta {
-  display: flex;
-  gap: 8px;
-  font-size: 14px;
-  color: #888;
-  flex-wrap: wrap;
-  margin-top: 4px;
+/* 뉴스 요약 */
+.cate-news-summary {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.4;
+  margin-top: 8px;
+  margin-left: 4px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  word-break: break-word;
+
+  line-clamp: 4;
 }
 
-.news-press {
-  margin-right: 8px;
-  white-space: nowrap;
-}
-
-.news-time {
-  white-space: nowrap;
+/* 언론사 및 날짜 */
+.cate-news-meta {
+  position: absolute;
+  bottom: 6px;
+  font-size: 12px;
+  color: #999;
 }

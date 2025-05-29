@@ -1,49 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
 import { useParams } from "react-router-dom"; // 검색어 가져오기
 import KeywordNews from "../components/KeywordNews";
 import AISummary from "../components/AISummary";
 import Traffic from "../components/Traffic";
 import "../styles/keyword.css";
 
-const dummyArticles = [
-  {
-    title: "기사 헤드라인 1",
-    summary: "기사 요약 내용입니다.",
-    imageUrl: "",
-    press: "언론사",
-    time: "2025.04.22 13:00",
-  },
-  {
-    title: "기사 헤드라인 2",
-    summary: "기사 요약 내용입니다.",
-    imageUrl: "",
-    press: "언론사",
-    time: "2025.04.22 14:00",
-  },
-  {
-    title: "기사 헤드라인 3",
-    summary: "기사 요약 내용입니다.",
-    imageUrl: "",
-    press: "언론사",
-    time: "2025.04.22 15:00",
-  },
-];
-
 function Keyword() {
   const { keyword } = useParams(); // URL의 키워드 파라미터 추출
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!keyword) return;
+
+    const fetchKeywordNews = async () => {
+      try {
+        const res = await axios.get(`https://newsummarize.com/api/search`, {
+          params: { keyword },
+        });
+
+        const data = res.data.map((news) => ({
+          title: news.title,
+          summary: news.content,
+          imageUrl: news.imageUrl,
+          press: news.publisher,
+          time: news.publishedAt,
+        }));
+
+        setArticles(data);
+      } catch (err) {
+        console.error("키워드 뉴스 불러오기 실패:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchKeywordNews();
+  }, [keyword]);
 
   return (
     <div className="keyword-page">
       <main className="keyword-content">
-        <div className="keyword-container">
-          {/* 좌측 뉴스 영역 */}
-          <KeywordNews articles={dummyArticles} title={`"${keyword}" 관련 뉴스 📰`} />
+        {/* 1행: AI 요약 + 트래픽 */}
+        <div className="keyword-header-row">
+          <AISummary />
+          <Traffic />
+        </div>
 
-          {/* 우측 요약/트래픽 영역 */}
-          <div className="keyword-side">
-            <AISummary />
-            <Traffic />
-          </div>
+        {/* 2행: 뉴스 리스트 */}
+        <div className="keyword-news-row">
+          <KeywordNews articles={articles} title={`"${keyword}" 관련 뉴스 📰`} />
         </div>
       </main>
     </div>

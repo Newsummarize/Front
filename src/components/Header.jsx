@@ -17,7 +17,7 @@ function Header() {
   // 로고 클릭 시 검색어 초기화하고 메인 페이지로 이동
   const handleLogoClick = () => {
     setKeyword(""); // 검색어 초기화
-    navigate("/main", { replace: true }); // 쿼리 파라미터 없이 메인 페이지로 이동
+    navigate("/", { replace: true }); // 쿼리 파라미터 없이 메인 페이지로 이동
   };
 
   const handleSearchChange = (e) => {
@@ -60,8 +60,8 @@ function Header() {
           <button className="icon-button" 
             onClick={() => navigate(isLoggedIn ? "/my" : "/login")}>👤
           </button>
-          <button className="icon-button"
-            onClick={() => logout()}>❓
+          <button className="icon-button">
+            ❓
           </button>
         </div>
       )}
