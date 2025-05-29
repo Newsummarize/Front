@@ -1,5 +1,12 @@
 import '../styles/keywordnews.css';
 
+function formatDate(datetimeStr) {
+  if (!datetimeStr) return '';
+  const [date, time] = datetimeStr.split('T');
+  const hhmm = time?.slice(0, 5);
+  return `${date} ${hhmm}`;
+}
+
 function KeywordNews({ articles, title }) {
   return (
     <div className="keywordnews">
@@ -17,7 +24,7 @@ function KeywordNews({ articles, title }) {
                 <p className="keyword-news-title">{news.title}</p>
                 <p className="keyword-news-summary">{news.summary}</p>
               </div>
-              <p className="keyword-news-meta">{news.press} · {news.time}</p>
+              <p className="keyword-news-meta">{news.press} · {formatDate(news.time)}</p>
             </div>
           </li>
         ))}

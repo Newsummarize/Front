@@ -1,40 +1,37 @@
 .keyword-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f5f6f8;
+  align-items: center;
 }
 
 .keyword-content {
-  padding: 15px;
-  background-color: #f5f6f8;
+  width: 100%;
+  max-width: 1140px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Main 페이지처럼 가운데 정렬 + 양옆 여백 */
-.keyword-container {
+/* AI요약 + 트래픽 */
+.keyword-header-row {
   display: flex;
   gap: 24px;
-  padding: 20px;
-  max-width: 1140px;
-  margin: 0 auto;   /* ⬅️ 가운데 정렬 */
-  height: 100%;
+  margin-bottom: 24px;
 }
 
-/* 좌측 뉴스 영역 */
-.keyword-container > .keywordnews {
-  flex: 3;
-}
-
-/* 우측 요약/트래픽 영역 */
-.keyword-side {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  height: 100%;
-}
-
-/* 요약/트래픽 박스 높이 동일 */
-.keyword-side > * {
+.keyword-header-row > * {
   flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* 뉴스 리스트 */
+.keyword-news-row {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }

@@ -7,7 +7,7 @@ import Join from './pages/Join';
 import Main from './pages/Main';
 import Keyword from './pages/Keyword';
 import My from './pages/My';
-import Cate from './pages/CategoryNews'
+import Cate from './pages/CategoryNews';
 
 function App() {
   return (
@@ -16,15 +16,13 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/category/:categoryName" element={<Cate />} />
         <Route path="/my" element={<My />} />
-        <Route path="/cate" element={<Cate />} />
         <Route path="/keyword/:keyword" element={<Keyword />} />
         <Route path="/" element={<Main />} /> {/* 제일 먼저 뜨는 페이지 */}
       </Routes>
     </>
   );
 }
-
 
 export default App;

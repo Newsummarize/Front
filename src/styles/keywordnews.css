@@ -2,8 +2,7 @@
 .keywordnews {
     background-color: #ffffff;
     border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -50,10 +49,9 @@
 
 /* 뉴스 이미지 (좌측) */
 .keyword-news-thumbnail.horizontal {
-    width: 46%;
-    aspect-ratio: 3 / 2;
+    width: 22%;
+    aspect-ratio: 5 / 3;
     object-fit: cover;
-    border-radius: 8px;
     margin-right: 12px;
     padding: 10px;
 }
@@ -72,15 +70,37 @@
     color: #333;
     margin-top: 6px;
     margin-bottom: 0px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    line-clamp: 1;
+    word-break: break-word;
+
+    line-height: 1.4;
+    min-height: calc(1.4em * 1);
 }
 
 /* 뉴스 요약 */
 .keyword-news-summary {
-    font-size: 14px;
+    font-size: 15px;
     color: #555;
     line-height: 1.4;
     margin-top: 8px;
     margin-left: 4px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    word-break: break-word;
+
+    line-clamp: 3;
 }
 
 /* 뉴스 언론사 · 날짜 */

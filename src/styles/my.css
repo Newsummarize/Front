@@ -7,10 +7,10 @@ padding: 40px 0;
 overflow: hidden;
 display: flex;
 max-width: 900px;
-margin: 40px auto;
-background: #fafbfc;
+margin: 0px auto;
+background: white;
 border-radius: 20px;
-box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 padding: 40px 40px;
 align-items: flex-start;
 }
@@ -184,7 +184,6 @@ border: none;
 border-radius: 8px;
 cursor: pointer;
 font-weight: bold;
-transition: background 0.2s;
 }
 .mypage-logout-btn:hover {
 background: #2c7be5;
