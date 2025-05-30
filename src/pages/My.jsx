@@ -1,21 +1,47 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../context/AuthContext";
 import '/src/styles/my.css';
 
 function MyPage() {
+  const { isLoggedIn, token, logout } = useAuth();
+  const navigate = useNavigate();
+
   const [selectedMenu, setSelectedMenu] = useState("개인정보");
 
-  // 예시 데이터
-  const userInfo = {
-    name: "김류화",
-    email: "a@com",
-    gender: "남자",
-    birth: "yyyy년mm월dd일",
-    categories: ["경제", "IT"],
-  };
+  const [userInfo, setUserInfo] = useState({
+    userName: "",
+    email: "",
+    age: 0,
+    gender: "",
+    defaultInterests: [],
+  });
 
   // 관심 키워드
   const [keywordInput, setKeywordInput] = useState("");
   const [keywords, setKeywords] = useState([]);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        'https://newsummarize.com/api/users/logout',
+        null,
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      logout(); // 토큰 제거 + 로그인 상태 초기화
+      navigate('/login'); // 로그인 페이지로 이동
+    } catch (err) {
+      console.error('로그아웃 실패:', err);
+      alert('로그아웃에 실패했습니다.');
+    }
+  };
 
   const handleAddKeyword = () => {
     const trimmed = keywordInput.trim();
@@ -29,13 +55,42 @@ function MyPage() {
     setKeywords(keywords.filter((_, idx) => idx !== removeIdx));
   };
 
+  // 사용자 정보 불러오기
   useEffect(() => {
-    const original = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = original;
+  if (!isLoggedIn || !token) return;
+
+  const original = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+
+  const fetchUserData = async () => {
+    try {
+      const res = await axios.get("https://newsummarize.com/api/users/my", {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = res.data;
+      setUserInfo({
+        userName: data.userName || "",
+        email: data.email || "",
+        age: data.age || 0,
+        gender: data.gender || "",
+        defaultInterests: data.defaultInterests || [],
+      });
+      setKeywords(data.customInterests || []);
+    } catch (err) {
+      console.error("사용자 정보 요청 실패:", err);
     }
-  }, []);
+  };
+
+  fetchUserData();
+
+  return () => {
+    document.body.style.overflow = original;
+  };
+}, [isLoggedIn, token]);
 
   return (
     <div className="mypage-bg">
@@ -58,7 +113,7 @@ function MyPage() {
 
         {/* 세로 구분선 */}
         <div className="mypage-vertical-divider"></div>
-      
+
         {/* 본문 */}
         <div className="mypage-content">
           {selectedMenu === "개인정보" && (
@@ -66,7 +121,7 @@ function MyPage() {
               <div className="mypage-content-title">개인정보</div>
               <div className="mypage-info-row">
                 <span className="mypage-info-label">이름</span>
-                <span>{userInfo.name}</span>
+                <span>{userInfo.userName}</span>
               </div>
               <div className="mypage-info-row">
                 <span className="mypage-info-label">Email</span>
@@ -78,12 +133,12 @@ function MyPage() {
               </div>
               <div className="mypage-info-row">
                 <span className="mypage-info-label">생년월일</span>
-                <span>{userInfo.birth}</span>
+                <span>{userInfo.age}</span>
               </div>
               <div className="mypage-info-row">
                 <span className="mypage-info-label">관심 카테고리</span>
                 <span>
-                  {userInfo.categories.map((cat, idx) => (
+                  {userInfo.defaultInterests.map((cat, idx) => (
                     <span key={idx} className="mypage-category-chip">{cat}</span>
                   ))}
                 </span>
@@ -99,10 +154,10 @@ function MyPage() {
                       placeholder="추가할 키워드 입력"
                       className="mypage-keyword-input"
                     />
-                    <button 
-                    type="button"
-                    onClick={handleAddKeyword}
-                    className="mypage-keyword-add-btn"
+                    <button
+                      type="button"
+                      onClick={handleAddKeyword}
+                      className="mypage-keyword-add-btn"
                     >
                       추가
                     </button>
@@ -113,21 +168,25 @@ function MyPage() {
                 <span className="mypage-info-label"></span>
                 <span className="mypage-keyword-list">
                   {keywords.map((kw, idx) => (
-                    <span key={idx} className="mypage-category-chip" style={{display: "inline-flex", 
-                    alignItems: "center", marginRight: "4px", marginBottom: "4px"}}>
-                  {kw}
-                  <button
-                    type="button"
-                    className="mypage-keyword-delete-btn"
-                    onClick={() => handleRemoveKeyword(idx)}
-                    style={{marginLeft: "6px", background: "none", border: "none", color: "#1a66bc", 
-                    fontSize: "15px", cursor: "pointer"}}
-                    aria-label="키워드 삭제"
-                  >
-                    ×
-                    </button>
-                  </span>
-                ))}
+                    <span key={idx} className="mypage-category-chip" style={{
+                      display: "inline-flex",
+                      alignItems: "center", marginRight: "4px", marginBottom: "4px"
+                    }}>
+                      {kw}
+                      <button
+                        type="button"
+                        className="mypage-keyword-delete-btn"
+                        onClick={() => handleRemoveKeyword(idx)}
+                        style={{
+                          marginLeft: "6px", background: "none", border: "none", color: "#1a66bc",
+                          fontSize: "15px", cursor: "pointer"
+                        }}
+                        aria-label="키워드 삭제"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
                 </span>
               </div>
             </>
@@ -135,7 +194,7 @@ function MyPage() {
           {selectedMenu === "로그아웃" && (
             <div className="mypage-logout-center">
               <div className="mypage-logout-message">로그아웃 하시겠습니까?</div>
-              <button className="mypage-logout-btn">로그아웃</button>
+              <button className="mypage-logout-btn" onClick={handleLogout}>로그아웃</button>
             </div>
           )}
         </div>
