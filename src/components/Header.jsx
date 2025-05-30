@@ -60,8 +60,8 @@ function Header() {
           <button className="icon-button" 
             onClick={() => navigate(isLoggedIn ? "/my" : "/login")}>👤
           </button>
-          <button className="icon-button">
-            ❓
+          <button className="icon-button"
+            onClick={() => logout()}>❓
           </button>
         </div>
       )}
