@@ -31,7 +31,7 @@ function Recommend({ articles, title, isLoggedIn }) {
           ))}
         </ul>
       ) : (
-        <p className="no-recommend">추천 뉴스가 없습니다</p>
+        <p className="no-recommend">로그인 시 추천 뉴스가 제공됩니다.</p>
       )}
     </div>
   );

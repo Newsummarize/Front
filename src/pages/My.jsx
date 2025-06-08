@@ -13,7 +13,9 @@ function MyPage() {
   const [userInfo, setUserInfo] = useState({
     userName: "",
     email: "",
-    age: 0,
+    year: 0,
+    month: 0,
+    day: 0,
     gender: "",
     defaultInterests: [],
   });
@@ -43,54 +45,88 @@ function MyPage() {
     }
   };
 
-  const handleAddKeyword = () => {
+  const handleAddKeyword = async () => {
     const trimmed = keywordInput.trim();
     if (trimmed && !keywords.includes(trimmed)) {
-      setKeywords([...keywords, trimmed]);
-      setKeywordInput("");
+      try {
+        await axios.post(
+          `https://newsummarize.com/api/users/interests?interest=${encodeURIComponent(trimmed)}`,
+          null,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: true,
+          }
+        );
+        setKeywords([...keywords, trimmed]);
+        setKeywordInput("");
+      } catch (err) {
+        console.error("키워드 추가 실패:", err);
+        alert("키워드 추가에 실패했습니다.");
+      }
     }
   };
 
-  const handleRemoveKeyword = (removeIdx) => {
-    setKeywords(keywords.filter((_, idx) => idx !== removeIdx));
+  const handleRemoveKeyword = async (removeIdx) => {
+    const keywordToRemove = keywords[removeIdx];
+
+    try {
+      await axios.delete(
+        `https://newsummarize.com/api/users/interests?interest=${encodeURIComponent(keywordToRemove)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setKeywords(keywords.filter((_, idx) => idx !== removeIdx));
+    } catch (err) {
+      console.error("키워드 삭제 실패:", err);
+      alert("키워드 삭제에 실패했습니다.");
+    }
   };
 
   // 사용자 정보 불러오기
   useEffect(() => {
-  if (!isLoggedIn || !token) return;
+    if (!isLoggedIn || !token) return;
 
-  const original = document.body.style.overflow;
-  document.body.style.overflow = "hidden";
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
-  const fetchUserData = async () => {
-    try {
-      const res = await axios.get("https://newsummarize.com/api/users/my", {
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const fetchUserData = async () => {
+      try {
+        const res = await axios.get("https://newsummarize.com/api/users/my", {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      const data = res.data;
-      setUserInfo({
-        userName: data.userName || "",
-        email: data.email || "",
-        age: data.age || 0,
-        gender: data.gender || "",
-        defaultInterests: data.defaultInterests || [],
-      });
-      setKeywords(data.customInterests || []);
-    } catch (err) {
-      console.error("사용자 정보 요청 실패:", err);
-    }
-  };
+        const data = res.data;
+        setUserInfo({
+          userName: data.userName || "",
+          email: data.email || "",
+          year: data.year || 0,
+          month: data.month || 0,
+          day: data.day || 0,
+          gender: data.gender || "",
+          defaultInterests: data.defaultInterests || [],
+        });
+        setKeywords(data.customInterests || []);
+      } catch (err) {
+        console.error("사용자 정보 요청 실패:", err);
+      }
+    };
 
-  fetchUserData();
+    fetchUserData();
 
-  return () => {
-    document.body.style.overflow = original;
-  };
-}, [isLoggedIn, token]);
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [isLoggedIn, token]);
 
   return (
     <div className="mypage-bg">
@@ -129,11 +165,15 @@ function MyPage() {
               </div>
               <div className="mypage-info-row">
                 <span className="mypage-info-label">성별</span>
-                <span>{userInfo.gender}</span>
+                <span>
+                  {userInfo.gender === 'M' ? '남자' : userInfo.gender === 'F' ? '여자' : '기타'}
+                </span>
               </div>
               <div className="mypage-info-row">
                 <span className="mypage-info-label">생년월일</span>
-                <span>{userInfo.age}</span>
+                <span>
+                  {`${userInfo.year}-${String(userInfo.month).padStart(2, '0')}-${String(userInfo.day).padStart(2, '0')}`}
+                </span>
               </div>
               <div className="mypage-info-row">
                 <span className="mypage-info-label">관심 카테고리</span>
