@@ -21,7 +21,7 @@ function MainPage() {
         setMainNews(mainNews.map(news => ({
           imageUrl: news.imageUrl,
           title: news.title,
-          summary: news.content,
+          summary: news.content || "본문에서 확인해주세요.",
           press: news.publisher,
           time: news.publishedAt,
         })));
@@ -36,22 +36,29 @@ function MainPage() {
   useEffect(() => {
     if (isLoggedIn && token) {
       const fetchRecommend = async () => {
+        console.log("isLoggedIn:", isLoggedIn);
+        console.log("token:", token);
+
         try {
-          const res = await axios.get("https://newsummarize.com/api/news/recommend", {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const res = await axios.get("https://newsummarize.com/api/news/recommend",
+            {
+              withCredentials: true,
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
           setRecommend(res.data.map(news => ({
             imageUrl: news.imageUrl,
             title: news.title,
-            summary: news.content || "요약 정보가 없습니다",
+            summary: news.content || "본문에서 확인해주세요.",
             press: news.publisher,
             time: news.publishedAt,
           })));
         } catch (err) {
           console.error("추천 뉴스 오류:", err);
+          if (err.response) {
+            console.log("응답 메시지:", err.response.data);
+          }
         }
       };
       fetchRecommend();
@@ -62,9 +69,9 @@ function MainPage() {
 
   return (
     <div className="main-container">
-       <Category
+      <Category
         selected="HOME"
-        onSelect={() => {}}
+        onSelect={() => { }}
       />
       <div className="news-wrapper">
         <MainNews articles={mainNews} title="🔥 주요 뉴스" />

@@ -3,11 +3,12 @@ background: #f5f6f8;
 min-height: 100vh;
 padding: 40px 0;
 }
+
 .mypage-container {
 overflow: hidden;
 display: flex;
 max-width: 900px;
-margin: 0px auto;
+margin: 30px auto;
 background: white;
 border-radius: 20px;
 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

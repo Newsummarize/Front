@@ -25,38 +25,58 @@ function AISummary() {
       });
   }, [keyword]);
 
-  // 날짜+시간 포맷 함수
-  const formatDateTime = (isoString) => {
-    const date = new Date(isoString);
-    const dateStr = date.toLocaleDateString("ko-KR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-    const timeStr = date.toLocaleTimeString("ko-KR", {
+  // 날짜별로 그룹화하는 함수
+  const groupByDate = (events) => {
+    return events.reduce((acc, event) => {
+      const dateKey = new Date(event.publishedAt).toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      if (!acc[dateKey]) acc[dateKey] = [];
+      acc[dateKey].push(event);
+      return acc;
+    }, {});
+  };
+
+  // 시간만 포맷
+  const formatTime = (isoString) => {
+    return new Date(isoString).toLocaleTimeString("ko-KR", {
       hour: "2-digit",
       minute: "2-digit",
     });
-    return `${dateStr} ${timeStr}`;
   };
+
+  const grouped = groupByDate(events);
 
   return (
     <div className="aisummary">
       <h2>타임라인 🪄</h2>
-      <div className="timeline-vertical">
+      <div className="aisummary-scroll">
         {events.length === 0 ? (
-          <p>요약된 뉴스 정보가 여기에 표시됩니다.</p>
+          <p style={{ marginLeft: '12px', marginTop: '6px' }}>
+            타임라인 데이터를 불러오는 중입니다.
+          </p>
         ) : (
-          events.map((event) => (
-            <div className="timeline-item" key={event.id}>
-              <div className="dot" />
-              <div className="timeline-content">
-                <div className="timeline-date">{formatDateTime(event.publishedAt)}</div>
-                <div className="timeline-title">{event.title}</div>
-                <div className="timeline-text">{event.content}</div>
+          <div className="timeline-vertical">
+            {Object.entries(grouped).map(([date, eventsOnDate]) => (
+              <div key={date} className="timeline-day-group">
+                <div className="timeline-date-row">
+                  <div className="dot" />
+                  <div className="timeline-date">{date}</div>
+                </div>
+                {eventsOnDate.map((event) => (
+                  <div className="timeline-item" key={event.id}>
+                    <div className="timeline-content">
+                      <div className="timeline-time">{formatTime(event.publishedAt)}</div>
+                      <div className="timeline-title">{event.title}</div>
+                      <div className="timeline-text">{event.content}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          ))
+            ))}
+          </div>
         )}
       </div>
     </div>

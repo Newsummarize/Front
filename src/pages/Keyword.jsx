@@ -22,7 +22,7 @@ function Keyword() {
 
         const data = res.data.map((news) => ({
           title: news.title,
-          summary: news.content,
+          summary: news.content || "본문 요약 정보가 없습니다.",
           imageUrl: news.imageUrl,
           press: news.publisher,
           time: news.publishedAt,
@@ -41,16 +41,13 @@ function Keyword() {
 
   return (
     <div className="keyword-page">
-      <main className="keyword-content">
-        {/* 1행: AI 요약 + 트래픽 */}
-        <div className="keyword-header-row">
-          <AISummary />
-          <Traffic />
-        </div>
-
-        {/* 2행: 뉴스 리스트 */}
-        <div className="keyword-news-row">
+      <main className="keyword-content keyword-grid-layout">
+        <div className="left-column">
           <KeywordNews articles={articles} title={`"${keyword}" 관련 뉴스 📰`} />
+        </div>
+        <div className="right-column">
+          <Traffic />
+          <AISummary />
         </div>
       </main>
     </div>

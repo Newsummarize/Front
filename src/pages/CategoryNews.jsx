@@ -5,14 +5,21 @@ import axios from 'axios';
 import Category from '../components/Category';
 import '../styles/categorynews.css';
 
+function formatDate(datetimeStr) {
+  if (!datetimeStr) return '';
+  const [date, time] = datetimeStr.split('T');
+  const hhmm = time?.slice(0, 5);
+  return `${date} ${hhmm}`;
+}
+
 function CategoryNews() {
   const { categoryName } = useParams();
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-     if (!categoryName) {
-    setArticles([]);
-    return;
+    if (!categoryName) {
+      setArticles([]);
+      return;
     }
 
     const normalizedCategory = categoryName.toLowerCase();
@@ -41,33 +48,34 @@ function CategoryNews() {
   }, [categoryName]);
 
   return (
-     <div>
+    <div>
       {/* 카테고리 목록 UI */}
-      <Category selected={categoryName} onSelect={() => {}} />
+      <Category selected={categoryName} onSelect={() => { }} />
 
       {/* 뉴스 리스트 UI */}
-      <div className="categorynews-container">
-        <ul className="categorynews-list">
-          {articles.length === 0 && categoryName !== 'HOME'}
-          {articles.map((article) => (
-            <li key={article.id} className="cate-news-item horizontal">
-              <img
-                src={article.imageUrl || '/src/assets/default.png'}
-                alt={article.title}
-                className="cate-news-thumbnail horizontal"
-              />
-              <div className="cate-news-content">
-                <div>
-                  <p className="cate-news-title">{article.title}</p>
-                  <p className="cate-news-summary">{article.content || '요약 정보가 없습니다.'}</p>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="categorynews-container">
+          <ul className="categorynews-list">
+            {articles.map((article) => (
+              <li key={article.id} className="cate-news-item horizontal">
+                <img
+                  src={article.imageUrl || '/src/assets/default.png'}
+                  alt={article.title}
+                  className="cate-news-thumbnail horizontal"
+                />
+                <div className="cate-news-content">
+                  <div>
+                    <p className="cate-news-title">{article.title}</p>
+                    <p className="cate-news-summary">{article.content || '본문에서 확인해주세요.'}</p>
+                  </div>
+                  <p className="cate-news-meta">
+                    {article.publisher} · {formatDate(article.publishedAt)}
+                  </p>
                 </div>
-                <p className="cate-news-meta">
-                  {article.publisher} · {new Date(article.publishedAt).toLocaleDateString()}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
