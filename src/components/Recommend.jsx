@@ -14,7 +14,11 @@ function Recommend({ articles, title, isLoggedIn }) {
       {isLoggedIn ? (
         <ul className="recommend-list">
           {articles.map((news, idx) => (
-            <li key={idx} className="recommend-item horizontal">
+            <li
+              key={idx}
+              className="recommend-item horizontal"
+              onClick={() => window.open(news.url, "_blank")}
+            >
               <img
                 src={news.imageUrl || '/src/assets/default.png'}
                 alt="추천 뉴스 썸네일"

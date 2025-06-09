@@ -26,6 +26,7 @@ function Keyword() {
           imageUrl: news.imageUrl,
           press: news.publisher,
           time: news.publishedAt,
+          url: news.url,
         }));
 
         setArticles(data);

@@ -19,7 +19,7 @@
 }
 
 /* 추천 뉴스 아이템 카드 */
-.recommend-item {
+.recommend-item-horizontal {
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -29,7 +29,7 @@
     transition: box-shadow 0.2s ease;
 }
 
-.recommend-item:hover {
+.recommend-item-horizontal:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -39,7 +39,7 @@
     aspect-ratio: 5 / 3;
     object-fit: cover;
     padding: 5px;
-     margin: 0 auto;
+    margin: 0 auto;
 }
 
 /* 텍스트 컨테이너 */
@@ -91,5 +91,5 @@
 }
 
 .no-recommend {
-  font-size: 14px;
+    font-size: 14px;
 }

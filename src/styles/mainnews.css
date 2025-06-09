@@ -27,9 +27,9 @@
     border-radius: 12px;
     position: relative;
     cursor: pointer;
-
     overflow: hidden;
     box-sizing: border-box;
+    transition: box-shadow 0.2s ease;
 }
 
 .news-item.horizontal:hover {
