@@ -36,6 +36,7 @@
 
 /* 왼쪽 컬럼 카드 스타일 */
 .left-column>* {
+  height: 945px;
   background-color: white;
   padding: 18px;
   padding-bottom: 0px;

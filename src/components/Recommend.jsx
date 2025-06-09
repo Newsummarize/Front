@@ -16,7 +16,7 @@ function Recommend({ articles, title, isLoggedIn }) {
           {articles.map((news, idx) => (
             <li
               key={idx}
-              className="recommend-item horizontal"
+              className="recommend-item"
               onClick={() => window.open(news.url, "_blank")}
             >
               <img

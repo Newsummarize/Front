@@ -1,5 +1,6 @@
 .categorynews-container {
-  max-width: 1140px;
+  width: 1140px;
+  min-height: 600px;
   background-color: #fff;
   padding: 20px;
   border-radius: 20px;
