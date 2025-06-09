@@ -56,7 +56,11 @@ function CategoryNews() {
         <div className="categorynews-container">
           <ul className="categorynews-list">
             {articles.map((article) => (
-              <li key={article.id} className="cate-news-item horizontal">
+              <li
+                key={article.id}
+                className="cate-news-item horizontal"
+                onClick={() => window.open(article.url, "_blank")}
+              >
                 <img
                   src={article.imageUrl || '/src/assets/default.png'}
                   alt={article.title}
