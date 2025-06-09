@@ -16,8 +16,7 @@ function Header() {
 
   // 로고 클릭 시 검색어 초기화하고 메인 페이지로 이동
   const handleLogoClick = () => {
-    setKeyword(""); // 검색어 초기화
-    navigate("/", { replace: true }); // 쿼리 파라미터 없이 메인 페이지로 이동
+    window.location.href = "/";
   };
 
   const handleSearchChange = (e) => {
@@ -26,9 +25,20 @@ function Header() {
 
   const handleSearch = () => {
     if (keyword.trim()) {
-      navigate(`/keyword/${encodeURIComponent(keyword)}`);
+      window.location.href = `/keyword/${encodeURIComponent(keyword)}`;
     }
   };
+
+  // URL에서 keyword 추출 (초기값)
+  const extractKeywordFromPath = (path) => {
+    const match = path.match(/^\/keyword\/(.+)/);
+    return match ? decodeURIComponent(match[1]) : "";
+  };
+
+  // 경로 바뀔 때마다 검색어 업데이트
+  useEffect(() => {
+    setKeyword(extractKeywordFromPath(location.pathname));
+  }, [location.pathname]);
 
   return (
     <header className="header-container">
@@ -57,7 +67,7 @@ function Header() {
 
       {!shouldHideExtras && (
         <div className="header-icons">
-          <button className="icon-button" 
+          <button className="icon-button"
             onClick={() => navigate(isLoggedIn ? "/my" : "/login")}>👤
           </button>
           <button className="icon-button" onClick={() => logout()}>

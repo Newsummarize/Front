@@ -5,13 +5,14 @@
   border-radius: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   margin-top: 32px;
+  margin-bottom: 20px;
 }
 
 /* 카테고리 뉴스 리스트 */
 .categorynews-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   padding: 0;
   margin: 0;
   list-style: none;

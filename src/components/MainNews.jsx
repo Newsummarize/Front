@@ -13,7 +13,11 @@ function MainNews({ articles, title }) {
       <h2>{title}</h2>
       <ul className="news-list">
         {articles.map((news, idx) => (
-          <li key={idx} className="news-item horizontal">
+          <li
+            key={idx}
+            className="news-item horizontal"
+            onClick={() => window.open(news.url, "_blank")}
+          >
             <img
               src={news.imageUrl || '/src/assets/default.png'}
               alt="뉴스 썸네일"

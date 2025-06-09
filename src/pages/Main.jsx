@@ -17,13 +17,14 @@ function MainPage() {
     const fetchMainNews = async () => {
       try {
         const res = await axios.get('https://newsummarize.com/api/news/main');
-        const mainNews = res.data;
-        setMainNews(mainNews.map(news => ({
+        console.log("첫 뉴스:", res.data[0]);
+        setMainNews(res.data.map(news => ({
           imageUrl: news.imageUrl,
           title: news.title,
           summary: news.content || "본문에서 확인해주세요.",
           press: news.publisher,
           time: news.publishedAt,
+          url: news.url,
         })));
       } catch (error) {
         console.error('메인 뉴스 불러오기 실패', error);
@@ -53,6 +54,7 @@ function MainPage() {
             summary: news.content || "본문에서 확인해주세요.",
             press: news.publisher,
             time: news.publishedAt,
+            url: news.url,
           })));
         } catch (err) {
           console.error("추천 뉴스 오류:", err);

@@ -1,7 +1,7 @@
 // join.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import '/src/styles/join.css';
 
 const currentYear = new Date().getFullYear();
@@ -19,6 +19,8 @@ function Join() {
     passwordCheck: '',
     category: [],
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,11 +66,12 @@ function Join() {
 
       console.log('회원가입 성공:', res.data);
       alert('회원가입이 완료되었습니다!');
+      navigate("/login");
     } catch (error) {
       console.error('회원가입 실패:', error);
-    
+
       if (error.response) {
-        if (error.response.status === 403) {
+        if (error.response.status === 400) {
           alert("이미 가입된 이메일입니다.");
         } else {
           alert("회원가입에 실패했습니다. 다시 시도해주세요.");
@@ -76,7 +79,7 @@ function Join() {
       } else {
         alert("네트워크 오류가 발생했습니다.");
       }
-    }    
+    }
   };
 
   return (
