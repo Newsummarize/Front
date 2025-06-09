@@ -37,7 +37,7 @@
 
 /* 이미지 위에 고정 */
 .recommend-thumbnail {
-    width: 90%;
+    width: 95%;
     aspect-ratio: 5 / 3;
     object-fit: cover;
     padding: 5px;
@@ -75,12 +75,12 @@
     line-height: 1.4;
 
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
-    line-clamp: 4;
+    line-clamp: 5;
 
     /* min-height: calc(1.4em * 6); */
 }
